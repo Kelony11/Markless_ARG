@@ -106,6 +106,30 @@ def get_matched_points(reference_image, camera_frame, ratio=0.75):
     )
 
 
+def evaluate_matches(reference_pts, frame_pts):
+    """
+    Evaluate matching quality using RANSAC.
+    This is for diagnostic testing before integration.
+    """
+    if len(reference_pts) < 4:
+        return None, 0, 0.0
+
+    H, mask = cv2.findHomography(
+        reference_pts,
+        frame_pts,
+        cv2.RANSAC,
+        5.0
+    )
+
+    if H is None or mask is None:
+        return None, 0, 0.0
+
+    inliers = int(mask.sum())
+    inlier_ratio = inliers / len(reference_pts) * 100
+
+    return H, inliers, inlier_ratio
+
+
 def main():
     # Load reference and scene images
     reference = cv2.imread(str(REFERENCE_PATH))
