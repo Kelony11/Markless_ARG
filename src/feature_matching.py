@@ -3,7 +3,10 @@ import cv2
 import numpy as np
 from pathlib import Path
 
-from feature_detection import detect_features
+if __package__:
+    from .feature_detection import detect_features
+else:
+    from feature_detection import detect_features
 
 
 # Project paths

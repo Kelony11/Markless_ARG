@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from ar_overlay import apply_overlay
 
 
 def estimate_homography(ref_pts, frame_pts):
@@ -30,7 +29,12 @@ def project_reference_corners(H, width, height):
 
 
 if __name__ == "__main__":
-    # Move each reference point 100 pixels right and 50 pixels down.
+    if __package__:
+        from .ar_overlay import apply_overlay
+    else:
+        from ar_overlay import apply_overlay
+
+    # Define the synthetic reference points.
     ref_pts = [(0, 0), (199, 0), (199, 99), (0, 99), (40, 30), (150, 70)]
 
     # Simulate a reference surface viewed at an angle.
@@ -65,7 +69,7 @@ if __name__ == "__main__":
     frame_corners = project_reference_corners(H, width=200, height=100)
     print("Projected corners:\n", np.round(frame_corners, 2))
 
-        # Create a blank test frame (height, width, color channels).
+    # Create a blank test frame (height, width, color channels).
     test_frame = np.zeros((240, 400, 3), dtype=np.uint8)
 
     # Draw the projected reference outline in green.

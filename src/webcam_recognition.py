@@ -2,13 +2,22 @@
 import cv2
 from pathlib import Path
 
-from feature_detection import detect_features
-from feature_matching import (
-    match_features,
-    filter_matches,
-    extract_matched_points,
-    evaluate_matches
-)
+if __package__:
+    from .feature_detection import detect_features
+    from .feature_matching import (
+        match_features,
+        filter_matches,
+        extract_matched_points,
+        evaluate_matches
+    )
+else:
+    from feature_detection import detect_features
+    from feature_matching import (
+        match_features,
+        filter_matches,
+        extract_matched_points,
+        evaluate_matches
+    )
 
 ROOT = Path(__file__).resolve().parent.parent
 REFERENCE_PATH = ROOT / "assets" / "reference.jpg"
