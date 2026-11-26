@@ -267,11 +267,6 @@ Future improvements could include optimizing feature extraction, improving geome
 - Perspective warping and AR overlay
 - Homography and AR overlay validation
 
-## PROJECT INFORMATION
-
-- **Course:** Machine Vision (332:501)
-- **University:** Rutgers University
-- **Instructor:** Yuqian Zhang
 
 ## LICENSE
 
