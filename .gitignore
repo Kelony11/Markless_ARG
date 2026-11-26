@@ -11,3 +11,7 @@ venv/
 # IDE
 .idea/
 .vscode/
+
+# Generated outputs
+results/*
+!results/.gitkeep
